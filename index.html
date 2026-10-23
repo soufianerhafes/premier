@@ -152,16 +152,18 @@
     const randomComment = phrases[randomIndex];
     document.getElementById("commentBox").innerText = randomComment;
 
-    function copyAndRedirect() {
-      navigator.clipboard.writeText(randomComment).then(() => {
-        alert("✅ Comment copied! You will now be redirected to the review page.");
-        const placeId = "ChIJNU4F1QPcRT4RTezoWT8m0bA";
-        const url = `https://search.google.com/local/writereview?placeid=${placeId}`;
-        window.open(url, '_blank');
-      }).catch(err => {
-        alert("❌ Failed to copy. Please try manually.");
-      });
-    }
+function copyAndRedirect() {
+  navigator.clipboard.writeText(randomComment)
+    .then(() => {
+      const placeId = "ChIJNU4F1QPcRT4RTezoWT8m0bA";
+      const url = `https://search.google.com/local/writereview?placeid=${placeId}`;
+
+      window.open(url, "_blank");
+    })
+    .catch(() => {
+      alert("Failed to copy comment.");
+    });
+}
   </script>
 </body>
 </html>
